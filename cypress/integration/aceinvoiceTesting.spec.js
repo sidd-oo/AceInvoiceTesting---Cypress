@@ -2,11 +2,11 @@
 
 describe("Ace Invoice Testing", () => {
 
-  beforeEach(() => {
-  cy.viewport(1280,720);
-})
+    beforeEach(() => {
+    cy.viewport(1280,720);
+  })
+
   it("1.Visiting Ace Invoice Website", () => {
-    cy.viewport(1280,720)
     cy.visit("https://www.aceinvoice.com/");
   });
 
@@ -81,17 +81,17 @@ describe("Ace Invoice Testing", () => {
   });
 
   it("14. Click on 'Continue'",()=>{
+    cy.wait(5000);
     cy.get('[data-test-id="onboarding-continue"]').click();
-    // cy.contains("Continue").click();
   });
   
   it("15. Assert that the page has 'Verification email sent to'",()=>{
-    cy.contains("Verification email sent to ");
+    cy.contains("Verification email sent to").should("exist");
   });
 
-  // it("16. Click on 'Clients' tab.",()=>{
-  //     cy.get('[data-test-id="header-clients"]').click();
-  // });
+  it("16. Click on 'Clients' tab.",()=>{
+      cy.get('[data-test-id="header-clients"]').click();
+  });
 
   // it("17. Click on 'Add a new client'",()=>{
 
