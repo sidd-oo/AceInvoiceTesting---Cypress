@@ -1,21 +1,21 @@
 # AceInvoiceTesting-Cypress
 
-This is a example project repository using the automation tool, [Cypress](https://www.cypress.io/). These tests are intended to do end to end testing for [AceInvoice](https://www.aceinvoice.com/). This testing project provide examples of common actions you may need in your testing.
+This is a example project repository using the automation tool, [Cypress](https://www.cypress.io/). These tests are intended to do end to end testing for [AceInvoice](https://www.aceinvoice.com/). This testing project provides examples of common actions you may need in your testing.
 
-## What you require to run Cypress on your Machine
+## What you require to run Cypress on your Machine ?
 1. [node](https://nodejs.org/en/)
 1. [git](https://git-scm.com/)
 
 ## How to set up this project in your machine ?
 1. Make a clone of this repository using git: `git clone https://github.com/sidd-oo/AceInvoiceTesting-Cypress.git`
 2. Go inside the project direcory `cd AceInvoiceTesting-Cypress`
-3. Installing all the dependencies using git: `npm install`
+3. Install all the dependencies using git: `npm install`
 
 ## How to run the test ?
 1. Type `npm run e2e` on the terminal inside the `AceInvoiceTesting-Cypress` directory
 2. A new Cypress window will pop up.
-3. There you will find `aceinvoiceTesting.spec.js` file under `Tests` > `INTEGRATION TEST` foldeer.
-4. Click on  this `aceinvoiceTesting.spec.js` and your test cases will start executing on the browser.
+3. There you will find `aceinvoiceTesting.spec.js` file under `Tests` > `INTEGRATION TEST` folder.
+4. Click on  this `aceinvoiceTesting.spec.js` and your test cases will start executing on the selected browser.
 
 ## The AceInvoice Challenge
 
