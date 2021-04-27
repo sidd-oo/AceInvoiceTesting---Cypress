@@ -23,3 +23,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // we expect a 3rd party library error with message 'list not defined'
+  // and don't want to fail the test so we return false
+  return false
+  // we still want to ensure there are no other unexpected
+  // errors, so we let them fail the test
+})
+
+
+beforeEach(function () {
+  window.logCalls = 1
+})
+Cypress.Commands.overwrite('log', (originalFn, message) => {
+  Cypress.log({
+    displayName: `******* TEST : ${window.logCalls}. ${message} ******* `,
+    name: `--- ${window.logCalls}. ${message}---`,
+    message: ''
+  })
+  window.logCalls++
+})

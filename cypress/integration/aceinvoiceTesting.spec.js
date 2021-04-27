@@ -1,20 +1,20 @@
  /// <reference types="cypress" />
 
-describe("Ace Invoice Testing", () => {
-
-    beforeEach(() => {
+describe("BigBinary Testing Challenge", () => {
+    before(() => {
     cy.viewport(1280,720);
-  })
+    Cypress.Cookies.preserveOnce();
+})
 
-  it("1.Visiting Ace Invoice Website", () => {
+it("AceInvoice Testing", () => {
+    cy.log("Visit https://www.aceinvoice.com/");
     cy.visit("https://www.aceinvoice.com/");
-  });
 
-  it("2.Click on 'Sign up for FREE'", () => {
+    
+    cy.log("Click on 'Sign up for FREE'");
     cy.get('.nav-item > [href="https://app.aceinvoice.com/sign_up"]').click();
-  });
-
-  it("3.Entering Custom Email",()=>{
+  
+    cy.log('Enter your customised email');
     let options = {
         weekday: "long",
         year: "numeric",
@@ -26,127 +26,91 @@ describe("Ace Invoice Testing", () => {
     let email = `sidd-oo-${today[1].split(' ')[1]}-${today[1].split(' ')[2]}-${today[2].trim()}-${today[3].trim().replaceAll(":",'').substr(0,4)}-${today[3].trim().replaceAll(":",'').substr(4,)}-${new Date().getMilliseconds()}@example.com`;
     cy.get('[data-test-id="signup-email"]').type(email);
     cy.get('[data-test-id="signup-submit"]').click();
-  });
-
-  it("4.Enter Password",()=>{
+  
+    cy.log('Password -> "welcome1234!"');
     cy.get('[data-test-id="signup-password"]').type("welcome1234!");
     cy.get('[data-test-id="signup-continue"]').click();
-  });
-
-  it("5.First Name",()=>{
+  
+    cy.log('First Name -> "Oliver"');
     cy.get('[data-test-id="introduction-first-name"]').type("Oliver");
-  });
-
-  it("6.Last Name",()=>{
+  
+    cy.log('Last Name -> "Smith"');
     cy.get('[data-test-id="introduction-last-name"]').type("Smith");
-  });
-
-  it("7.Select 'GMT+ 5:30 New Delhi' from the dropdown",()=>{
+  
+    cy.log('Select "GMT+ 5:30 New Delhi" from the dropdown"');
     cy.get('select').select('(GMT+05:30) New Delhi').should('have.value', 'New Delhi')
-  });
-
-  it("8. Select 'DD/MM/YYY' as the date format",()=>{
+  
+    cy.log('Select "DD/MM/YYY" as the date format');
     cy.contains("DD/MM/YYYY").click();
-  });
-
-  it("9. Check both the check boxes.",()=>{
+    
+    cy.log('Check both the check boxes.');
     cy.contains("By checking you agree to ").click();
     cy.contains("Send me product updates, notifications, and other updates.").click();
-  });
-
-  it("10. Click on 'Continue'",()=>{
+  
+    cy.log('Click on "Continue".');
     cy.get('[data-test-id="introduction-submit"]').click();
-  });
-
-  it("11. Name of your company. -> 'sidd-oo Private Limited'",()=>{
+  
+    cy.log('Name of your company. -> "sidd-ood Private Limited".');
     let companyName = "sidd-oo Private Limited";
     cy.get('[data-test-id="organization-name"]').type(companyName);
     cy.get('[data-test-id="organization-submit"]').click();
-  });
-  
-  it("12. Click on 'Continue'",()=>{
+
+    cy.log('Click on "Continue".');
     cy.get('[data-test-id="client-name"]').type("Oliver");
     cy.get('[data-test-id="client-secondary-name"]').type("Smith");
-    // cy.get('[data-test-id="client-address-line-one"]').type("1159  Sunset Drive");
-    // cy.get('[data-test-id="client-address-line-two"]').type("12th Parkinson Street");
-    // cy.get('[data-test-id="client-address-city"]').type("Pine Bluff");
-    // cy.get('[data-test-id="client-address-state"]').type("AR");
-    // cy.get('[data-test-id="client-address-country"]').type("USA");
-    // cy.get('[data-test-id="client-address-zipcode"]').type("71601");
     cy.get('[data-test-id="client-submit"]').click();
-  });
 
-  it("13. Assert that the page has 'Congratulations, you're all set!'",()=>{
+    cy.log('Assert that the page has "Congratulations, youre all set!"');
     cy.contains("Congratulations, you're all set!").should("have.text","Congratulations, you're all set!");
-  });
-
-  it("14. Click on 'Continue'",()=>{
-    cy.get('[data-test-id="onboarding-continue"]').click();
-    //After click this above button, It is navigating to unexpected URL, but when we click manually 
-    //this button navigates to different URL. 
-  });
   
-  // it("15. Assert that the page has 'Verification email sent to'",()=>{
-  //   cy.contains("Verification email sent to").should("exist");
-  // });
+    cy.log('Click on "Continue"');
+    cy.get('button.btn.btn-primary[data-test-id="onboarding-continue"]').click();
+    
+    cy.log('Assert that the page has "Verification email sent to"');
+    cy.get('div.header > div.verification-banner.py-2').contains("Verification email sent to").should('exist');
 
-  // it("16. Click on 'Clients' tab.",()=>{
-  //     cy.get('[data-test-id="header-clients"]').click();
-  // });
+    cy.log('Click on "Clients" tab.');
+    cy.get('[data-test-id="header-clients"]').click();
 
-  // it("17. Click on 'Add a new client'",()=>{
+    cy.log('Click on "Add a new client"');
+    cy.get('[data-test-id="client-add-new"]').click();
 
-  // });
+    cy.log('Name -> "Trix Inc"');
+    cy.get('[data-test-id="client-name"]').type("Trix Inc");
 
-  // it("18. Name -> 'Trix Inc'",()=>{
+    cy.log('Click on "Submit" button');
+    cy.get('[data-test-id="client-submit"]').click();
 
-  // });
+    cy.log('Assert that the page has "Add New Project"');
+    cy.get('[data-test-id="project-add-new"]').contains("Add New Project").should("exist");
 
-  // it("19. Click on 'Submit' button",()=>{
+    cy.log('Project Name -> "Trix Web Development"');
+    cy.get('[data-test-id="project-name"]').type("Trix Web Development");
 
-  // });
+    cy.log('Select "Hourly project rate"');
+    cy.get('[data-test-id="project-billing-method"]').select('hourly_project_rate');
 
-  // it("20. Assert that the page has 'Add New Project'",()=>{
+    cy.log('"Hourly project rate" -> "20"');
+    cy.get('[data-test-id="project-rate"]').clear().type("20");
 
-  // });
+    cy.log('Hit "Submit"');
+    cy.get('[data-test-id="project-save"]').click();
 
-  // it("21. Project Name -> 'Trix Web Development'",()=>{
+    cy.log('Assert that the page has "Trix Web Development"');
+    cy.get('.field-value[data-test-id="project-name"]').should("have.text","Trix Web Development");
 
-  // });
+    cy.log('Assert that the page has "Hourly Project Rate"');
+    cy.get('[data-test-id="project-billing-method"]').should("have.text","Hourly Project Rate");
 
-  // it("22. Select 'Hourly project rate'",()=>{
+    cy.log('Assert that the page has "No rounding"');
+    cy.get('.field-value.white-space-pre-wrap.text-break > span').eq(0).should("have.text","No rounding ");
 
-  // });
+    cy.log('Assert that the page has "Oliver Smith"');
+    cy.get('[data-test-id="project-team-member-table-name-1"]').should("have.text","Oliver Smith");
 
-  // it("23. 'Hourly project rate' -> '20'",()=>{
+    cy.log('Assert that the page has "$20"');
+    cy.get('[data-test-id="project-hourly-rate"]').should("exist","$20");
 
-  // });
-
-  // it("24. Hit 'Submit'",()=>{
-
-  // });
-
-  // it("25. Assert that the page has 'Trix Web Development'",()=>{
-
-  // });
-
-  // it("26. Assert that the page has 'Hourly Project Rate'",()=>{
-
-  // });
-
-  // it("27. Assert that the page has 'No rounding'",()=>{
-
-  // });
-
-  // it("28. Assert that the page has 'Oliver Smith'",()=>{
-
-  // });
-
-  // it("29. Assert that the page has '$20'",()=>{
-
-  // });
-
+  });
 
 });
-
-     
